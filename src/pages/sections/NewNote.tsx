@@ -11,7 +11,7 @@ export default function NewNote({ handleAddNote }: NewNoteProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const bodyRef = useRef<HTMLTextAreaElement>(null);
 
-    function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const newNoteData: NoteData = {
@@ -24,7 +24,10 @@ export default function NewNote({ handleAddNote }: NewNoteProps) {
 
     return (
         <section className="p-4 lg:p-5 bg-[#474749] rounded-[2rem] rounded-tl-none drop-shadow-[4px_4px_30px_rgba(97,104,112,0.40)] lg:drop-shadow-[8px_8px_70px_rgba(97,104,112,0.50)]">
-            <form className="p-8 bg-customGrayLight text-mainBlack space-y-4 rounded-3xl rounded-tl-none">
+            <form
+                className="p-8 bg-customGrayLight text-mainBlack space-y-4 rounded-3xl rounded-tl-none"
+                onSubmit={(e) => handleSubmit(e)}
+            >
                 <input
                     type="text"
                     ref={titleRef}
@@ -64,7 +67,6 @@ export default function NewNote({ handleAddNote }: NewNoteProps) {
                             icon={<HiOutlinePlus />}
                             buttonType={"submit"}
                             isFullSize
-                            onClick={(e) => onSubmit(e)}
                         />
                     </div>
                 </div>
