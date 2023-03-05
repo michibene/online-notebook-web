@@ -12,7 +12,7 @@ export default function LandingPage() {
     function addNewNote(note: NoteData) {
         const newNote: Note = { id: uuidv4(), ...note };
         console.log(newNote);
-        setNotes([...notes, newNote]);
+        setNotes([newNote, ...notes]);
     }
 
     return (
