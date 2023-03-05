@@ -7,11 +7,11 @@ export default function LandingPage() {
         <div className="max-w-screen-xl mx-auto px-8">
             <Header />
 
-            <div className="flex flex-col lg:flex-row gap-12 xl:gap-20">
+            <div className="flex flex-col lg:flex-row gap-16 xl:gap-20">
                 <div className="min-w-[35%]">
                     <NewNote />
                 </div>
-                
+
                 <AllNotes />
             </div>
         </div>
