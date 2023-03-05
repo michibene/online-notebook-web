@@ -1,4 +1,5 @@
 import { NoteData } from "data/types/Note";
+import { formatDate } from "utilities/helpers";
 
 export default function NoteCard({ title, body, dateCreated }: NoteData) {
     return (
@@ -8,7 +9,7 @@ export default function NoteCard({ title, body, dateCreated }: NoteData) {
         >
             <h2>{title}</h2>
             <p>{body}</p>
-            <p className="mt-auto text-[#616870] text-opacity-80">{dateCreated}</p>
+            <p className="mt-auto text-[#616870] text-opacity-80">{formatDate(dateCreated)}</p>
         </div>
     );
 }

@@ -18,9 +18,11 @@
         "baseUrl": "./src",
         "paths": {
             "hooks/*": ["./hooks/*"],
+            "ui/buttons/*": ["./components/ui/buttons/*"],
             "ui/cards/*": ["./components/ui/cards/*"],
             "data/*": ["./data/*"],
-            "pages/*": ["./pages/*"]
+            "pages/*": ["./pages/*"],
+            "utilities/*": ["./utilities/*"]
         }
     },
     "include": ["src"],

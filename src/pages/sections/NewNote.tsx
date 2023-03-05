@@ -1,12 +1,33 @@
-import PrimaryButton from "components/ui/buttons/PrimaryButton";
+import PrimaryButton from "ui/buttons/PrimaryButton";
+import { NoteData } from "data/types/Note";
+import { useRef } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
 
-export default function NewNote() {
+type NewNoteProps = {
+    handleAddNote: (note: NoteData) => void;
+};
+
+export default function NewNote({ handleAddNote }: NewNoteProps) {
+    const titleRef = useRef<HTMLInputElement>(null);
+    const bodyRef = useRef<HTMLTextAreaElement>(null);
+
+    function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+        event.preventDefault();
+
+        const newNoteData: NoteData = {
+            title: titleRef.current!.value,
+            body: bodyRef.current!.value,
+            dateCreated: new Date().toDateString(),
+        };
+        handleAddNote(newNoteData);
+    }
+
     return (
         <section className="p-4 lg:p-5 bg-[#474749] rounded-[2rem] rounded-tl-none drop-shadow-[4px_4px_30px_rgba(97,104,112,0.40)] lg:drop-shadow-[8px_8px_70px_rgba(97,104,112,0.50)]">
             <form className="p-8 bg-customGrayLight text-mainBlack space-y-4 rounded-3xl rounded-tl-none">
                 <input
                     type="text"
+                    ref={titleRef}
                     name="title"
                     required
                     placeholder="New note title"
@@ -15,6 +36,7 @@ export default function NewNote() {
                 />
 
                 <textarea
+                    ref={bodyRef}
                     name="body"
                     rows={8}
                     required
@@ -42,6 +64,7 @@ export default function NewNote() {
                             icon={<HiOutlinePlus />}
                             buttonType={"submit"}
                             isFullSize
+                            onClick={(e) => onSubmit(e)}
                         />
                     </div>
                 </div>

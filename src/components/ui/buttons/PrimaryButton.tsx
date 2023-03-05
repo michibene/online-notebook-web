@@ -2,7 +2,7 @@ type PrimaryButtonProps = {
     buttonText: string;
     icon?: JSX.Element;
     buttonType: "button" | "submit" | "reset" | undefined;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     isFullSize?: boolean;
 };
 
