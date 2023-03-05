@@ -3,11 +3,11 @@ import { NoteData } from "data/types/Note";
 import { useRef } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
 
-type NewNoteProps = {
+type NewNoteCardProps = {
     handleAddNote: (note: NoteData) => void;
 };
 
-export default function NewNote({ handleAddNote }: NewNoteProps) {
+export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const bodyRef = useRef<HTMLTextAreaElement>(null);
 

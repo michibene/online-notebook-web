@@ -1,11 +1,11 @@
 import { Note } from "data/types/Note";
 import NoteCard from "ui/cards/NoteCard";
 
-type AllNotesProps = {
+type AllNotesListProps = {
     notesList: Note[];
 };
 
-export default function AllNotes({ notesList }: AllNotesProps) {
+export default function AllNotesList({ notesList }: AllNotesListProps) {
     return (
         <section className="mb-16 grid lg:grid-cols-2 gap-6">
             {notesList.map((note: Note) => (
