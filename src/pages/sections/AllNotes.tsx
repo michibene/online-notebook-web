@@ -1,23 +1,17 @@
+import { pseudoNoteData } from "data/pseudoNoteData";
+import { Note } from "data/types/Note";
+import { useState } from "react";
 import NoteCard from "ui/cards/NoteCard";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AllNotes() {
+    const [notes, setNotes] = useState<Note[]>(pseudoNoteData.map((note) => ({ id: uuidv4(), ...note })));
+
     return (
         <section className="mb-16 grid lg:grid-cols-2 gap-6">
-            <NoteCard
-                title="Science"
-                body="Investigating the effect of microplastics on aquatic ecosystems. Analyzing the bioaccumulation and toxicity levels of these pollutants in fish and other organisms."
-                dateCreated="Monday, 23. Feb"
-            />
-            <NoteCard
-                title="Science"
-                body="Investigating the effect of microplastics on aquatic ecosystems. Analyzing the bioaccumulation and toxicity levels of these pollutants in fish and other organisms."
-                dateCreated="Monday, 23. Feb"
-            />
-            <NoteCard
-                title="Science"
-                body="Investigating"
-                dateCreated="Monday, 23. Feb"
-            />
+            {notes.map((note: Note) => (
+                <NoteCard key={note.id} title={note.title} body={note.body} dateCreated={note.dateCreated} />
+            ))}
         </section>
     );
 }

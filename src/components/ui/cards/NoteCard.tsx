@@ -1,10 +1,6 @@
-type Note = {
-    title: string;
-    body: string;
-    dateCreated: string;
-};
+import { NoteData } from "data/types/Note";
 
-export default function NoteCard({ title, body, dateCreated }: Note) {
+export default function NoteCard({ title, body, dateCreated }: NoteData) {
     return (
         <div
             className={`p-8 min-h-[16rem] flex flex-col gap-4 text-mainBlack rounded-[2rem] 
