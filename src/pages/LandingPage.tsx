@@ -1,11 +1,11 @@
 import Header from "pages/sections/Header";
-import Notes from "pages/sections/Notes";
+import NotesApp from "pages/sections/NotesApp";
 
 export default function LandingPage() {
     return (
         <div className="max-w-screen-xl mx-auto px-8">
             <Header />
-            <Notes />
+            <NotesApp />
         </div>
     );
 }

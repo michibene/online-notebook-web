@@ -5,7 +5,7 @@ import { useState } from "react";
 import NewNoteCard from "ui/cards/NewNoteCard";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Notes() {
+export default function NotesApp() {
     const [notes, setNotes] = useState<Note[]>(pseudoNoteData.map((note) => ({ id: uuidv4(), ...note })));
 
     function addNewNote(note: NoteData) {
