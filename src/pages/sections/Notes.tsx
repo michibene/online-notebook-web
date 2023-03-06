@@ -10,6 +10,7 @@ export default function Notes() {
 
     function addNewNote(note: NoteData) {
         const newNote: Note = { id: uuidv4(), ...note };
+        console.log(newNote);
         setNotes([newNote, ...notes]);
     }
 
