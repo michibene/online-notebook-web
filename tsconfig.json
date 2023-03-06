@@ -17,10 +17,10 @@
         "jsx": "react-jsx",
         "baseUrl": "./src",
         "paths": {
-            "hooks/*": ["./hooks/*"],
             "ui/buttons/*": ["./components/ui/buttons/*"],
             "ui/cards/*": ["./components/ui/cards/*"],
             "data/*": ["./data/*"],
+            "hooks/*": ["./hooks/*"],
             "pages/*": ["./pages/*"],
             "utilities/*": ["./utilities/*"]
         }

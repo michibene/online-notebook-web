@@ -1,12 +1,13 @@
 import { pseudoNoteData } from "data/pseudoNoteData";
 import { Note, NoteData } from "data/types/Note";
+import { useLocalStorage } from "hooks/useLocalStorage";
 import AllNotesList from "pages/sections/AllNotesList";
-import { useState } from "react";
 import NewNoteCard from "ui/cards/NewNoteCard";
 import { v4 as uuidv4 } from "uuid";
 
 export default function NotesApp() {
-    const [notes, setNotes] = useState<Note[]>(pseudoNoteData.map((note) => ({ id: uuidv4(), ...note })));
+    const pseudoNotes = pseudoNoteData.map((note) => ({ id: uuidv4(), ...note }));
+    const [notes, setNotes] = useLocalStorage<Note[]>("Notes", []);
 
     function addNewNote(note: NoteData) {
         const newNote: Note = { id: uuidv4(), ...note };
