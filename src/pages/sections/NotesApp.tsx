@@ -7,21 +7,26 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function NotesApp() {
     const pseudoNotes = pseudoNoteData.map((note) => ({ id: uuidv4(), ...note }));
-    const [notes, setNotes] = useLocalStorage<Note[]>("Notes", []);
+    const [notes, setNotes] = useLocalStorage<Note[]>("Notes", pseudoNotes);
 
     function addNewNote(note: NoteData) {
         const newNote: Note = { id: uuidv4(), ...note };
-        console.log(newNote);
         setNotes([newNote, ...notes]);
+    }
+
+    function deleteNote(id: string) {
+        setNotes((prevNotes) => {
+            return prevNotes.filter((note) => note.id !== id);
+        });
     }
 
     return (
         <div className="flex flex-col lg:flex-row gap-16 xl:gap-20">
-            <div className="lg:max-w-[40%] xl:max-w-[35%]">
+            <div className="lg:w-[40%] xl:w-[35%]">
                 <NewNoteCard handleAddNote={addNewNote} />
             </div>
 
-            <AllNotesList notesList={notes} />
+            <AllNotesList notesList={notes} handleDeleteNote={deleteNote} />
         </div>
     );
 }

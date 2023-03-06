@@ -3,15 +3,23 @@ import NoteCard from "ui/cards/NoteCard";
 
 type AllNotesListProps = {
     notesList: Note[];
+    handleDeleteNote: (id: string) => void;
 };
 
-export default function AllNotesList({ notesList }: AllNotesListProps) {
+export default function AllNotesList({ notesList, handleDeleteNote }: AllNotesListProps) {
     return (
         <div className="flex-grow mb-16">
             {Array.isArray(notesList) && notesList.length ? (
                 <section className="grid lg:grid-cols-2 gap-6">
                     {notesList.map((note: Note) => (
-                        <NoteCard key={note.id} title={note.title} body={note.body} dateCreated={note.dateCreated} />
+                        <NoteCard
+                            key={note.id}
+                            id={note.id}
+                            title={note.title}
+                            body={note.body}
+                            dateCreated={note.dateCreated}
+                            handleDeleteNote={handleDeleteNote}
+                        />
                     ))}
                 </section>
             ) : (
