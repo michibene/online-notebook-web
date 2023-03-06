@@ -17,7 +17,7 @@ export default function NotesApp() {
 
     return (
         <div className="flex flex-col lg:flex-row gap-16 xl:gap-20">
-            <div className="min-w-[35%]">
+            <div className="lg:max-w-[40%] xl:max-w-[35%]">
                 <NewNoteCard handleAddNote={addNewNote} />
             </div>
 
