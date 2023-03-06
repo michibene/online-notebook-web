@@ -10,6 +10,7 @@ type NewNoteCardProps = {
 export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const bodyRef = useRef<HTMLTextAreaElement>(null);
+    const dateRef = useRef<HTMLInputElement>(null);
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -17,7 +18,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
         const newNoteData: NoteData = {
             title: titleRef.current!.value,
             body: bodyRef.current!.value,
-            dateCreated: new Date().toDateString(),
+            dateCreated: dateRef.current!.value,
         };
         handleAddNote(newNoteData);
     }
@@ -49,8 +50,17 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
 
                 <div className="space-y-3 lg:space-y-4">
                     <div className="flex justify-between items-center gap-6">
-                        <p>Set a date:</p>
-                        <p>28.02.2023</p>
+                        <label htmlFor="date">Set a date:</label>
+                        <input
+                            type="date"
+                            ref={dateRef}
+                            id="date"
+                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            min="2000-01-01"
+                            max="2100-01-01"
+                            required
+                            className="bg-customGrayLight lg:text-lg focus:outline-none"
+                        />
                     </div>
 
                     <div className="flex justify-between items-center gap-6">
