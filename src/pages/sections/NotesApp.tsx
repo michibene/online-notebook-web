@@ -21,12 +21,13 @@ export default function NotesApp() {
     }
 
     return (
-        <div className="flex flex-col lg:flex-row gap-16 xl:gap-20">
-            <div className="lg:w-[40%] xl:w-[35%]">
+        <div className="grid lg:grid-cols-5 gap-16 xl:gap-20">
+            <div className="lg:col-span-2">
                 <NewNoteCard handleAddNote={addNewNote} />
             </div>
-
-            <AllNotesList notesList={notes} handleDeleteNote={deleteNote} />
+            <div className="lg:col-span-3 mb-16">
+                <AllNotesList notesList={notes} handleDeleteNote={deleteNote} />
+            </div>
         </div>
     );
 }

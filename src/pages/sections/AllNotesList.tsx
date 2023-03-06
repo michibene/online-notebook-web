@@ -8,7 +8,7 @@ type AllNotesListProps = {
 
 export default function AllNotesList({ notesList, handleDeleteNote }: AllNotesListProps) {
     return (
-        <div className="flex-grow mb-16">
+        <>
             {Array.isArray(notesList) && notesList.length ? (
                 <section className="grid lg:grid-cols-2 gap-6">
                     {notesList.map((note: Note) => (
@@ -28,6 +28,6 @@ export default function AllNotesList({ notesList, handleDeleteNote }: AllNotesLi
                     <p>Add a new idea using the form to create a note.</p>
                 </section>
             )}
-        </div>
+        </>
     );
 }

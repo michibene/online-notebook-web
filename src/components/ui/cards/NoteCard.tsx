@@ -15,7 +15,7 @@ export default function NoteCard({ id, title, body, dateCreated, handleDeleteNot
             <h2>{title}</h2>
             <p>{body}</p>
 
-            <div className="mt-auto inline-flex justify-between">
+            <div className="mt-auto flex justify-between">
                 <p className="pt-[0.3rem] text-[#616870] text-opacity-80">{formatDate(dateCreated)}</p>
 
                 <button
