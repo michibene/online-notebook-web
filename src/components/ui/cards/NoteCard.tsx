@@ -6,11 +6,11 @@ type NoteCardProps = {
     handleDeleteNote: (id: string) => void;
 } & Note;
 
-export default function NoteCard({ id, title, body, dateCreated, handleDeleteNote }: NoteCardProps) {
+export default function NoteCard({ id, title, body, dateCreated, bgColor, handleDeleteNote }: NoteCardProps) {
     return (
         <div
-            className={`p-8 min-h-[16rem] flex flex-col gap-4 text-mainBlack rounded-[2rem] 
-                    bg-noteYellow`}
+            className="p-8 min-h-[16rem] flex flex-col gap-4 text-mainBlack rounded-[2rem]"
+            style={{ backgroundColor: bgColor ? bgColor : "#FFD155" }}
         >
             <h2>{title}</h2>
             <p>{body}</p>

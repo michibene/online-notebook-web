@@ -2,6 +2,8 @@ import PrimaryButton from "ui/buttons/PrimaryButton";
 import { NoteData } from "data/types/Note";
 import { useRef } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
+import ColorPicker from "ui/buttons/ColorPicker";
+import { useState } from "react";
 
 type NewNoteCardProps = {
     handleAddNote: (note: NoteData) => void;
@@ -11,6 +13,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const bodyRef = useRef<HTMLTextAreaElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
+    const [bgColor, setBgColor] = useState("#FFD155");
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -19,6 +22,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
             title: titleRef.current!.value,
             body: bodyRef.current!.value,
             dateCreated: dateRef.current!.value,
+            bgColor: bgColor,
         };
         handleAddNote(newNoteData);
     }
@@ -64,11 +68,8 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
                     </div>
 
                     <div className="flex justify-between items-center gap-6">
-                        <p>Choose a color:</p>
-                        <span
-                            className="mb-1 h-8 w-8 rounded-full bg-noteYellow border-mainBlack ring-noteYellow
-                                    border-2 border-opacity-70 ring-4 ring-opacity-60"
-                        />
+                        <label htmlFor="color">Choose a color:</label>
+                        <ColorPicker id="color" selectedColor={bgColor} setColor={setBgColor} />
                     </div>
 
                     <div className="pt-1 lg:pt-2">

@@ -18,6 +18,7 @@ export default function AllNotesList({ notesList, handleDeleteNote }: AllNotesLi
                             title={note.title}
                             body={note.body}
                             dateCreated={note.dateCreated}
+                            bgColor={note.bgColor}
                             handleDeleteNote={handleDeleteNote}
                         />
                     ))}

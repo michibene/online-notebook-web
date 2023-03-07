@@ -6,4 +6,5 @@ export type NoteData = {
     title: string;
     body: string;
     dateCreated: string;
+    bgColor: string;
 };

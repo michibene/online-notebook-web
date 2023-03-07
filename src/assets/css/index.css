@@ -46,3 +46,9 @@ h2 {
         line-height: 30px;
     }
 }
+
+button.selected {
+    border-color: rgba(25 25 27 / 0.7);
+    border-width: 2px;
+    box-shadow: 0 0 0 4px rgba(244, 244, 245, 0.35), 0 0 0 4px currentColor;
+}
