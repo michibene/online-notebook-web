@@ -1,9 +1,9 @@
-import PrimaryButton from "ui/buttons/PrimaryButton";
-import { NoteData } from "data/types/Note";
-import { RefObject, useRef } from "react";
+import { Note, NoteData } from "data/types/Note";
+import { RefObject, useRef, useState } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
 import ColorPicker from "ui/buttons/ColorPicker";
-import { useState } from "react";
+import PrimaryButton from "ui/buttons/PrimaryButton";
+import { compareTwoStrings } from "utilities/compareStringSimilarity";
 
 type NewNoteCardProps = {
     handleAddNote: (note: NoteData) => void;
@@ -23,6 +23,11 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
             return;
         }
 
+        // Check if note is matching at 80% on the same day
+        if (!isNoteValid(bodyRef, dateRef)) {
+            return;
+        }
+
         const newNoteData: NoteData = {
             title: titleRef.current.value,
             body: bodyRef.current.value,
@@ -32,6 +37,23 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
 
         handleAddNote(newNoteData);
         resetNoteValues(titleRef, bodyRef, dateRef);
+    }
+
+    function isNoteValid(bodyRef: RefObject<HTMLTextAreaElement>, dateRef: RefObject<HTMLInputElement>): boolean {
+        const storedNotes = sessionStorage.getItem("notes");
+        if (storedNotes === null) {
+            return false;
+        }
+
+        const notesList: Note[] = JSON.parse(storedNotes);
+        const isSimilar = notesList.some((note) => {
+            if (dateRef.current!.value === note.dateCreated) {
+                const similarity = compareTwoStrings(bodyRef.current!.value, note.body);
+                return similarity >= 0.8;
+            }
+        });
+
+        return !isSimilar;
     }
 
     function resetNoteValues(

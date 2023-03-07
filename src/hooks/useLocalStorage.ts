@@ -3,16 +3,16 @@ import { useState } from "react";
 
 export function useLocalStorage<T>(key: string, initialState: T | (() => T)) {
     const [storageValue, setStorageValue] = useState<T>(() => {
-        const jsonValue = sessionStorage.getItem(key);
+        const dataInStorage = sessionStorage.getItem(key);
 
-        if (jsonValue === null) {
+        if (dataInStorage === null) {
             if (typeof initialState === "function") {
                 return (initialState as () => T)();
             } else {
                 return initialState;
             }
         } else {
-            return JSON.parse(jsonValue);
+            return JSON.parse(dataInStorage);
         }
     });
 
