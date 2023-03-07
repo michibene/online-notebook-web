@@ -19,6 +19,7 @@
         "paths": {
             "ui/buttons/*": ["./components/ui/buttons/*"],
             "ui/cards/*": ["./components/ui/cards/*"],
+            "ui/modals/*": ["./components/ui/modals/*"],
             "data/*": ["./data/*"],
             "hooks/*": ["./hooks/*"],
             "pages/*": ["./pages/*"],

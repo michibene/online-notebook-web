@@ -4,6 +4,7 @@ import { HiOutlinePlus } from "react-icons/hi";
 import ColorPicker from "ui/buttons/ColorPicker";
 import PrimaryButton from "ui/buttons/PrimaryButton";
 import { compareTwoStrings } from "utilities/compareStringSimilarity";
+import SmallModal from "ui/modals/SmallModal";
 
 type NewNoteCardProps = {
     handleAddNote: (note: NoteData) => void;
@@ -14,6 +15,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     const bodyRef = useRef<HTMLTextAreaElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
     const [bgColor, setBgColor] = useState("#FFD155");
+    const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -25,6 +27,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
 
         // Check if note is matching at 80% on the same day
         if (!isNoteValid(bodyRef, dateRef)) {
+            setIsWarningModalOpen(true);
             return;
         }
 
@@ -66,8 +69,12 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
         dateRef.current!.value = new Date().toISOString().substring(0, 10);
     }
 
+    function handleShowWarningModal() {
+        setIsWarningModalOpen(!isWarningModalOpen);
+    }
+
     return (
-        <section className="p-4 lg:p-5 bg-[#474749] rounded-[2rem] rounded-tl-none drop-shadow-[4px_4px_30px_rgba(97,104,112,0.40)] lg:drop-shadow-[8px_8px_70px_rgba(97,104,112,0.50)]">
+        <section className="p-4 lg:p-5 relative bg-[#474749] rounded-[2rem] rounded-tl-none drop-shadow-[4px_4px_30px_rgba(97,104,112,0.40)] lg:drop-shadow-[8px_8px_70px_rgba(97,104,112,0.50)]">
             <form
                 className="p-8 bg-customGrayLight text-mainBlack space-y-4 rounded-3xl rounded-tl-none"
                 onSubmit={(e) => handleSubmit(e)}
@@ -121,6 +128,14 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
                     </div>
                 </div>
             </form>
+
+            {isWarningModalOpen && (
+                <SmallModal
+                    type="error"
+                    message="The note you want to add has already been saved with the same date."
+                    handleClose={handleShowWarningModal}
+                />
+            )}
         </section>
     );
 }
