@@ -13,7 +13,7 @@ export default function NoteCard({ id, title, body, dateCreated, bgColor, handle
             style={{ backgroundColor: bgColor ? bgColor : "#FFD155" }}
         >
             <h2>{title}</h2>
-            <p>{body}</p>
+            <p className="whitespace-pre-wrap">{body}</p>
 
             <div className="mt-auto flex justify-between">
                 <p className="pt-[0.3rem] text-[#616870] text-opacity-80">{formatDate(dateCreated)}</p>

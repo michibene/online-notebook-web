@@ -1,6 +1,6 @@
 import PrimaryButton from "ui/buttons/PrimaryButton";
 import { NoteData } from "data/types/Note";
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
 import ColorPicker from "ui/buttons/ColorPicker";
 import { useState } from "react";
@@ -18,13 +18,30 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
+        // Check for null even if the given references are required
+        if (!titleRef.current || !bodyRef.current || !dateRef.current) {
+            return;
+        }
+
         const newNoteData: NoteData = {
-            title: titleRef.current!.value,
-            body: bodyRef.current!.value,
-            dateCreated: dateRef.current!.value,
+            title: titleRef.current.value,
+            body: bodyRef.current.value,
+            dateCreated: dateRef.current.value,
             bgColor: bgColor,
         };
+
         handleAddNote(newNoteData);
+        resetNoteValues(titleRef, bodyRef, dateRef);
+    }
+
+    function resetNoteValues(
+        titleRef: RefObject<HTMLInputElement>,
+        bodyRef: RefObject<HTMLTextAreaElement>,
+        dateRef: RefObject<HTMLInputElement>
+    ) {
+        titleRef.current!.value = "";
+        bodyRef.current!.value = "";
+        dateRef.current!.value = new Date().toISOString().substring(0, 10);
     }
 
     return (
