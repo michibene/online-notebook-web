@@ -43,7 +43,7 @@ export default function NewNoteCard({ handleAddNote }: NewNoteCardProps) {
     }
 
     function isNoteValid(bodyRef: RefObject<HTMLTextAreaElement>, dateRef: RefObject<HTMLInputElement>): boolean {
-        const storedNotes = sessionStorage.getItem("notes");
+        const storedNotes = localStorage.getItem("notes");
         if (storedNotes === null) {
             return false;
         }
