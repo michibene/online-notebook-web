@@ -26,7 +26,7 @@ To start the program locally, you have to run vite dev server. Server will autom
 1. In the current folder (online-notebook-web) run
 
     ```
-    npm run devServer
+    npm run dev
     ```
 
 2. By default the web service will be accessible on localhost: `http://127.0.0.1:5173/`
